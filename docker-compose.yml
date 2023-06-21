@@ -36,6 +36,19 @@ services:
     networks:
       - hr-system
 
+  user-api8001:
+    image: marceloteimelo/user-api:1.0.0
+    ports:
+      - "8001:8001"
+    depends_on:
+      - eureka-server
+      - api-gateway
+    environment:
+      - PORT=8001
+      - EUREKA_URL=http://eureka-server:8761/eureka
+    networks:
+      - hr-system
+
   payroll-api:
     image: marceloteimelo/payroll-api:1.0.0
     ports:
